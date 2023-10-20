@@ -1,7 +1,16 @@
 ### Run KVM Host
-
+* follow the instructions to create an Ubuntu 20.04 virtual disk image
 ```
-./run-kvm.sh -k ./linux/arch/arm64/boot/Image -i ./cloud_1.img
+# qemu-img create -f raw cloud.img 25g
+# mkfs.ext4 cloud.img
+# mount cloud.img /mnt
+# tar xvf ./ubuntu-20.04-server-cloudimg-arm64-root.tar.xz -C /mnt
+# sync
+# sudo touch /mnt/etc/cloud/cloud-init.disabled
+```
+* run kvm host
+```
+./run-kvm.sh -k ./linux/arch/arm64/boot/Image -i ./cloud.img
 ```
 
 ### Run gust 
